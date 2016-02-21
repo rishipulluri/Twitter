@@ -314,7 +314,7 @@
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Bdw-Jf-gHf">
                                                 <rect key="frame" x="16" y="7" width="71" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Back"/>
                                                 <connections>
                                                     <segue destination="UYq-D0-yJF" kind="modal" modalTransitionStyle="partialCurl" id="npZ-2e-aG6"/>
                                                 </connections>
@@ -324,7 +324,7 @@
                                 </items>
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9PH-U9-ozx">
-                                <rect key="frame" x="113" y="63" width="95" height="86"/>
+                                <rect key="frame" x="4" y="50" width="95" height="86"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydk-A0-Tgp">
                                 <rect key="frame" x="226" y="-10" width="62" height="64"/>
@@ -334,7 +334,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bs6-DS-oJg">
-                                <rect key="frame" x="2" y="315" width="81" height="36"/>
+                                <rect key="frame" x="20" y="286" width="81" height="36"/>
                                 <state key="normal" image="onaction">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -343,7 +343,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHr-hC-72d">
-                                <rect key="frame" x="115" y="315" width="91" height="36"/>
+                                <rect key="frame" x="122" y="286" width="91" height="36"/>
                                 <state key="normal" image="retweet-action-on-pressed">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -352,26 +352,31 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKe-GB-cdw">
-                                <rect key="frame" x="214" y="312" width="86" height="36"/>
+                                <rect key="frame" x="221" y="286" width="86" height="36"/>
                                 <state key="normal" image="reply">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="ReplyButton:" destination="bEj-aD-Z5B" eventType="touchUpInside" id="uwx-8n-VG3"/>
+                                    <action selector="retweetbut:" destination="bEj-aD-Z5B" eventType="touchUpInside" id="4Ch-X2-VFG"/>
+                                    <segue destination="agQ-KZ-D7L" kind="modal" identifier="tocomposefromdetail" id="o4H-gW-Lul"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiW-I2-y7v">
-                                <rect key="frame" x="146" y="353" width="127" height="21"/>
+                                <rect key="frame" x="153" y="330" width="127" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n38-4o-Vfl">
-                                <rect key="frame" x="29" y="353" width="45" height="21"/>
+                                <rect key="frame" x="47" y="330" width="45" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQb-4f-6Au">
-                                <rect key="frame" x="22" y="181" width="276" height="126"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="4" y="144" width="276" height="126"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -379,10 +384,34 @@
                                 <rect key="frame" x="0.0" y="407" width="320" height="161"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.76862745099999996" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phX-k6-tk2">
+                                <rect key="frame" x="102" y="72" width="196" height="64"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjT-AC-XVh">
+                                <rect key="frame" x="102" y="33" width="191" height="69"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIH-1P-38a">
+                                <rect key="frame" x="256" y="330" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9kr-XY-YYO">
+                                <rect key="frame" x="0.0" y="267" width="320" height="3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1137254902" green="0.79215686269999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="TitleLabel" destination="ZjT-AC-XVh" id="QaA-DF-M0e"/>
+                        <outlet property="commandLabel" destination="phX-k6-tk2" id="W5X-q9-sUp"/>
                         <outlet property="favButton" destination="WHr-hC-72d" id="fYf-0Q-Juw"/>
                         <outlet property="favCount" destination="jiW-I2-y7v" id="sVY-wm-4Wz"/>
                         <outlet property="imageLabel" destination="XQb-4f-6Au" id="GvH-XC-Awn"/>
@@ -390,6 +419,7 @@
                         <outlet property="likeButton" destination="bs6-DS-oJg" id="IoV-zj-KyS"/>
                         <outlet property="likeCount" destination="n38-4o-Vfl" id="2uD-Wc-WdZ"/>
                         <outlet property="replyButton" destination="vKe-GB-cdw" id="WjK-oi-KS4"/>
+                        <outlet property="replyCount" destination="rIH-1P-38a" id="wAk-I5-EvU"/>
                         <outlet property="tweetLabel" destination="XQb-4f-6Au" id="GNf-pG-fJf"/>
                     </connections>
                 </viewController>
@@ -505,6 +535,7 @@
         <image name="retweet-action-on-pressed" width="37" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LMJ-Wg-QE4"/>
+        <segue reference="npZ-2e-aG6"/>
+        <segue reference="o4H-gW-Lul"/>
     </inferredMetricsTieBreakers>
 </document>

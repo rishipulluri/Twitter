@@ -77,14 +77,18 @@ class TwitterClient: BDBOAuth1SessionManager {
     func retweeting(id: AnyObject?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
         POST("1.1/statuses/retweet/\(id!).json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             print("near success")
+            
             }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
                 print("error liking\(id)")
         })
     }
     
     func makeTweet(message: String) {
-        POST("https://api.twitter.com/1.1/statuses/update.json?status=\(message)", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+        "https://api.twitter.com/1.1/statuses/update.json?status=asdasdas%20ad&in_reply_to_status_id=701285744904642560"        
+        POST("https://api.twitter.com/1.1/statuses/update.json?\(message)", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
             print("Successfully posted")
+            print(response)
+            print("https://api.twitter.com/1.1/statuses/update.json?\(message)")
             }) { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
                 print("Failed to post")
         }
@@ -132,3 +136,4 @@ class TwitterClient: BDBOAuth1SessionManager {
     
 
 }
+//status=\(message)

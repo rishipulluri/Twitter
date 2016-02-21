@@ -10,6 +10,9 @@ import UIKit
 
 class TweetsDetailedViewController: UIViewController {
 
+    @IBOutlet var replyCount: UILabel!
+    @IBOutlet var commandLabel: UILabel!
+    @IBOutlet var TitleLabel: UILabel!
     @IBOutlet var imageView2: UIImageView!
     @IBOutlet var favCount: UILabel!
     @IBOutlet var likeCount: UILabel!
@@ -19,9 +22,12 @@ class TweetsDetailedViewController: UIViewController {
     
     @IBOutlet var imageLabel: UILabel!
     @IBOutlet var tweetLabel: UILabel!
+    var reply_id: String!
     
     var tweet: Tweet!
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         var image = UIImage(named: "bird")
         self.navigationItem.titleView = UIImageView(image: image)
@@ -38,6 +44,8 @@ class TweetsDetailedViewController: UIViewController {
         {
             likeButton.setImage(UIImage(named: "liked"), forState: UIControlState.Normal)
         }
+        TitleLabel.text = tweet.user.Name
+        commandLabel.text = tweet.user.ScreenName
 
         // Do any additional setup after loading the view.
     }
@@ -90,6 +98,22 @@ class TweetsDetailedViewController: UIViewController {
     
     }
     
+    
+    @IBAction func ReplyButton(sender: AnyObject) {
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "tocomposefromdetail"
+        {
+            reply_id = tweet.id as! String 
+            let lb = segue.destinationViewController as! ComposeViewController
+            print(reply_id)
+            lb.reply_id = reply_id
+            var yodo = Int(replyCount.text!)
+            replyCount.text = "\(yodo!  + 1) "
+            
+        }
+    }
     
 
     /*

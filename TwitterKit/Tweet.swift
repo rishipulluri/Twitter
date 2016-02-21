@@ -9,7 +9,7 @@
 import UIKit
 
 class Tweet: NSObject {
-    var id: AnyObject
+    var id: String
     var user:User
     var text: String?
     var createdAtString:String?
@@ -28,7 +28,7 @@ class Tweet: NSObject {
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         createdAt = formatter.dateFromString(createdAtString!)
         // id = dictionary["id"] as! String
-        id = dictionary["id"]!
+        id = dictionary["id_str"] as! String
        // print("\(id)")
         retweetCount = dictionary["retweet_count"] as? Int
         favoriteCount = dictionary["favorite_count"] as? Int
@@ -82,6 +82,8 @@ class Tweet: NSObject {
     {
        return (seconds / 31536000, seconds / 2628000, seconds / (3600 * 24), seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
+    
+    
     
     
 

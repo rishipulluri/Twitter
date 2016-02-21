@@ -17,6 +17,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     var chractercount:Bool = true
     var tweet: Tweet!
     var newUser:User!
+    var reply_id:String?
+    var post: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +50,15 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         }
         else
         {
-            let messageToSend = TextView1.text!.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            var messageToSend = "status=" + TextView1.text!.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            print(reply_id)
+            if (reply_id != nil)
+            {
+                messageToSend =  messageToSend + "&in_reply_to_status_id=\(reply_id!)"
+            }
+            print(messageToSend)
+            
             
             TwitterClient.sharedInstance.makeTweet(messageToSend)
         }
@@ -70,6 +80,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         
 
     }
+    
+   
     
     
     
