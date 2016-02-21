@@ -11,7 +11,19 @@ import UIKit
 class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
     var tweets: [Tweet]?
+    var refreshControl: UIRefreshControl!
+
     override func viewDidLoad() {
+        
+        var image = UIImage(named: "bird")
+        self.navigationItem.titleView = UIImageView(image: image)
+                
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshList:", name:"refreshMyTableView", object: nil)
+        callTwitterUpdateTweetsAPI()
+
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
         super.viewDidLoad()
         TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
             self.tweets = tweets
@@ -55,6 +67,78 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "detailview" {
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let tweet = tweets![indexPath!.row]
+            
+            let detailViewController = segue.destinationViewController as! TweetsDetailedViewController
+            detailViewController.tweet = tweet
+        }
+        else if segue.identifier == "profilesegue" {
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! UITableViewCell
+            
+            let indexPath = tableView.indexPathForCell(cell)
+            let tweet = tweets![indexPath!.row]
+            
+            let detailViewController = segue.destinationViewController as!  ProfileImageViewController
+            detailViewController.tweet = tweet
+           
+        }
+        
+       /**
+        if segue.identifier == "composesegue"
+        {
+            let cell = sender as!
+            let indexpath = tableView.indexPathForCell(cell)
+            let tweet = tweets![indexpath!.row]
+           let detailviewController = segue.destinationViewController as! ComposeViewController
+            detailviewController.tweet = tweet
+            print("composed the view COntroller")
+        }
+*/
+        
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    
+    func refreshList(notification: NSNotification){
+        tableView.reloadData()
+    }
+
+    
+    func onRefresh() {
+        delay(2, closure: {
+            self.refreshControl.endRefreshing()
+        })
+        
+        callTwitterUpdateTweetsAPI()
+        
+        self.refreshControl?.endRefreshing()
+    }
+    
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
+    }
+    
+    func callTwitterUpdateTweetsAPI() {
+        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
+            self.tweets = tweets
+            self.tableView.reloadData()
+        }
+    }
+    
     
     
 

@@ -16,6 +16,8 @@ let twitterBaseUrl = NSURL(string: "https://api.twitter.com")
 
 class TwitterClient: BDBOAuth1SessionManager {
     
+    var tweet:Tweet!
+    
     var loginCompletion : ((user: User?, error: NSError?) -> ())?
     class var sharedInstance: TwitterClient{
         struct Static {
@@ -65,9 +67,11 @@ class TwitterClient: BDBOAuth1SessionManager {
     func likeTweetWithId(id: AnyObject?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
         POST("1.1/favorites/create.json?id=\(id!)", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             print("success liking")
+            
             }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
                 print("error liking\(id)")
         })
+        
     }
     
     func retweeting(id: AnyObject?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
@@ -76,6 +80,14 @@ class TwitterClient: BDBOAuth1SessionManager {
             }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
                 print("error liking\(id)")
         })
+    }
+    
+    func makeTweet(message: String) {
+        POST("https://api.twitter.com/1.1/statuses/update.json?status=\(message)", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            print("Successfully posted")
+            }) { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("Failed to post")
+        }
     }
 
     
