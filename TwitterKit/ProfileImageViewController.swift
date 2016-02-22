@@ -21,8 +21,10 @@ class ProfileImageViewController: UIViewController {
     var user:User!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        headerImage.setImageWithURL(NSURL(string: tweet.user.headerImageUrl!)!)
+        if (tweet.user.headerImageUrl != nil)
+        {
+            headerImage.setImageWithURL(NSURL(string: tweet.user.headerImageUrl!)!)
+        }
         TiltleLabel.text = tweet.user.Name!
         
         imageLabel1.setImageWithURL(NSURL(string: tweet.user.profileImageUrl!)!)

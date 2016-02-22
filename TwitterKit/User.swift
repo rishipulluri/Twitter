@@ -36,7 +36,11 @@ class User: NSObject {
         followerCount = dictionary["followers_count"] as? Int
         followingCount = dictionary["friends_count"] as? Int
         tweetCount = dictionary["statuses_count"] as? Int
-        headerImageUrl = dictionary["profile_banner_url"] as? String
+        if dictionary["profile_banner_url"] != nil
+        {
+            headerImageUrl = dictionary["profile_banner_url"] as? String
+
+        }
 
 
     
